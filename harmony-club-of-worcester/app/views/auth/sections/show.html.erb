@@ -1,0 +1,36 @@
+<h1 class="text-center"><%= @section.title %></h1>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Title:</div>
+      <%= @section.title %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Location:</div>
+      <%= @section.location %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Position:</div>
+      <%= @section.position %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Visible:</div>
+      <%= @section.visible %>
+    </div>
+  </li>
+</ul>
+
+<div class="text-center">
+  <%= link_to 'Edit', edit_auth_section_path(@section), class: "btn btn-primary" %>
+  <%= link_to 'Back', auth_sections_path, class: "btn btn-primary" %>
+</div>

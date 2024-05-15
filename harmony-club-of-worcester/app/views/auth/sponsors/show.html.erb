@@ -1,0 +1,31 @@
+<h1 class="text-center"><%= @sponsor.title %></h1>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Title:</div>
+      <%= @sponsor.title %>
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Website:</div>
+      <%= @sponsor.website %>
+    </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Image:</div>
+      <% if @sponsor.image.attached? %>
+        <%= image_tag @sponsor.image, class: "photoContainer", alt: @sponsor.title + " logo" %>
+      <% else %>
+        <p>None</p>
+      <% end %>
+    </div>
+  </li>
+</ul>
+
+<div class="text-center">
+  <%= link_to 'Edit', edit_auth_sponsor_path(@sponsor), class: "btn btn-primary" %>
+  <%= link_to 'Back', auth_sponsors_path, class: "btn btn-primary" %>
+</div>

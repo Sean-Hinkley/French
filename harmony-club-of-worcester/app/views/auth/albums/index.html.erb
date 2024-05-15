@@ -1,0 +1,27 @@
+<h1 class="text-center">Albums</h1>
+
+<div class="row">
+  <% @albums.each do |album| %>
+  <div class="col-lg-3 d-flex justify-content-center mb-3 photoContainer">
+    <div class="card mb-3">
+      <% if album.photos.first && album.photos.first.image.attached? %>
+      <%= image_tag album.photos.first.image, class: "d-flex mx-auto h-50 w-auto", alt: "Photo of "+album.photos.first.title %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= album.title %></h5>
+        <p class="card-text "><%= album.description %></p>
+        <div class="text-center border-top">
+          <%= link_to 'View', auth_album_path(album), class: "btn btn-outline-primary" %>
+          <%= link_to 'Edit', edit_auth_album_path(album), class: "btn btn-outline-warning" %>
+          <%= link_to 'Delete', auth_album_path(album), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="text-center p-3">
+  <%= link_to "Back to Control Panel", auth_site_panel_url, class: "btn btn-primary" %>
+  <%= link_to 'New Album', new_auth_album_path, class: "btn btn-primary" %>
+</div>

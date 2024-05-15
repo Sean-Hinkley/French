@@ -1,0 +1,245 @@
+<div class="row">
+  <div class="row">
+    <div class="col text-center">
+      <%= link_to "Getting Started", asset_path("hcowGuide.pdf"), class: "btn btn-primary ms-4", target: :_blank %>
+    </div>
+  </div>
+
+  <%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Section"%>
+        <%if p.canRead%>
+          <% @temp = true %>
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Sections</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage sections at the top of the website!</p>
+      </div>
+      <p class="card-text"><%= link_to "Sections Control Panel", auth_sections_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+  <%end%>
+
+
+
+
+
+<!--
+  <%@temp=false%>
+
+
+  <%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Page"%>
+        <%if p.canRead%>
+          <%@temp=true%>
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Pages</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage pages within the sections at the top of the website!</p>
+      </div>
+      <p class="card-text"><%= link_to "Pages Control Panel", auth_pages_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+
+ <%end%>
+-->
+
+
+
+
+
+
+
+
+  <%@temp=false%>
+
+
+
+
+
+
+
+<%@user.roles.each do |r|%>
+  <%r.permissions.each do |p|%>
+    <%if p.permissible_type == "Event"%>
+      <%if p.canRead%>
+        <%@temp=true%>
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Events</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage events on the events page!</p>
+      </div>
+      <p class="card-text"><%= link_to "Events Control Panel", auth_events_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+<%end%>
+  <%@temp=false%>
+
+  <%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Album"%>
+        <%if p.canRead%>
+          <%@temp=true%>
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Albums</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage Albums on the albums page!</p>
+      </div>
+      <p class="card-text"><%= link_to "Albums Control Panel", auth_albums_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+
+  <%end%>
+
+  <%@temp=false%>
+
+
+
+
+<%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Photo"%>
+        <%if p.canRead%>
+          <%@temp=true%>
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Photos</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage photos within albums on the albums page!</p>
+      </div>
+      <p class="card-text"><%= link_to "Photos Control Panel", auth_photos_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+<%end%>
+
+<%@temp=false%>
+
+
+<%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Sponsor"%>
+        <%if p.canRead%>
+        <%@temp=true%>
+
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Sponsors</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage sponsors on the sponsors page!</p>
+      </div>
+      <p class="card-text"><%= link_to "Sponsors Control Panel", auth_sponsors_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+<%end%>
+
+<%@temp=false%>
+
+<%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Role"%>
+        <%if p.canRead%>
+          <%@temp=true%>
+
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Roles</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage roles that can be assigned to users!</p>
+      </div>
+      <p class="card-text"><%= link_to "Roles Control Panel", auth_roles_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+<%end%>
+
+<%@temp=false%>
+
+
+
+
+<% @user.roles.each do |role| %>
+  <% if role.title == "Developer" %>
+
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">User Management</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage roles for users!</p>
+      </div>
+      <p class="card-text"><%= link_to "User Management Control Panel", auth_user_management_index_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+
+  <% end %>
+<% end %>
+  
+
+
+<%@user.roles.each do |r|%>
+    <%r.permissions.each do |p|%>
+      <%if p.permissible_type == "Permission"%>
+        <%if p.canRead%>
+          <%@temp=true%>
+        <%end%>
+      <%end%>
+    <%end%>
+  <%end%>
+
+  <%if @temp%>
+  <div class="col-lg-4 col-md-6 text-center p-5">
+    <div class="card border-primary mb-3 controlPanelCards">
+      <div class="card-header fw-bold fs-5">Permissions</div>
+      <div class="card-body text-primary">
+        <p class="card-text fw-bold">Click me to manage permissions for roles!</p>
+      </div>
+      <p class="card-text"><%= link_to "Permissions Control Panel", auth_permissions_path, class: "mb-3 stretched-link opacity-0" %></p>
+    </div>
+  </div>
+  <%end%>
+  <%@temp=false%>
+</div>

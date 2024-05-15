@@ -1,0 +1,29 @@
+// Place all the styles related to the permissions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.border-end-permission {
+    border-right: 0.125rem solid #464646;
+}
+
+.border-start-permission {
+    border-left: 0.125rem solid #464646;
+}
+
+.border-bottom-permission {
+    border-bottom: 0.125rem solid #464646;
+}
+
+.permission-responsive-hide-large {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .permission-responsive-hide-small {
+        display: none !important;
+    }
+
+    .permission-responsive-hide-large {
+        display: inline-flex !important;
+    }
+}

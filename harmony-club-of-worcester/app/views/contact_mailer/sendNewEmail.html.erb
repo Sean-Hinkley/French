@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+       /* Add custom classes and styles that you want inlined here */
+       .rowOneColOne{
+         background-color: #00075E;
+       }
+       
+       .rowOneColThree{
+         background-color: #B22234;
+       }
+
+       .cardContainer{
+         border-radius: 0px, 0px, 6px, 6px;
+       }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-2 rowOneColOne">
+        </div>
+        
+        <div class="col-8">
+          <%= image_tag "https://www.harmonyclubofworcester.org/uploads/1/2/2/8/12287361/441088.gif", class: "img-fluid ax-center max-w-48 max-h-48" %>
+        </div>
+        
+        <div class="col-2 rowOneColThree">
+        </div>
+      </div>
+      <div class="card cardContainer">
+        <div class="card-body">
+          <hr>
+          <p class="text-center"><%= @first %> <%= @last %></p>
+          <hr>
+          <p class="text-center"><%= @message %></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+<%= form_with(model: [:auth, page]) do |form| %>
+  <% if page.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% page.errors.each do |error| %>
+          <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center mt-2 alertStyles" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              <b><%= error.full_message %></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "Navigation Section", class: "form-label" %>
+    <%= form.collection_select :section_id, Section.all - Section.where(title: "«Temp Section»"), :id, :title, {}, class: 'form-select', required: true  %>
+    <div class="form-text">Select what section you want to put your page under by clicking on the box above.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :page_type, class: "form-label" %>
+    <%= form.select :page_type, options_for_select([ "Basic Page", "Internal URL", "External URL", "PDF"], :selected=>@page.page_type), {}, class: 'form-select', required: true %>
+    <div class="form-text">Select what you want your page to be by clicking on the box above. Basic Page is for making your own content page through the website. External URL is if you want your page to link to another website. PDF is if you would like your page to be a PDF.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :visible, class: "form-label" %>
+    <%= form.check_box :visible, class: "form-check-label" %>
+  </div>
+
+  <div class="mb-3" id="pl">
+    <%= form.label "Name of URL", class: "form-label" %>
+    <%= form.text_field :permalink, class: "form-control" %>
+    <div class="form-text">Field for what the name of the page should be in the URL.</div>
+  </div>
+
+
+  <div class="mb-3">
+    <%= form.label "position in menu", class: "form-label" %>
+    <%= form.number_field :position, class: "form-control", required: true %>
+    <div class="form-text">Field for where this page will show up in the dropdown, ex: a page of position 1 will show up before a page of position 2.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "Have users authenticate?", class: "form-label" %>
+    <%= form.check_box :authenticate, class: "form-check-label" %>
+    <div class="form-text">Check this box if you want to add permissions to the page. Leave it unchecked if you want everyone to see it. ex: You only want admins to see this page, so you would check it and then add permissions to it. </div>
+  </div>
+  
+  <div class="mb-3" id="con">
+    <%= form.label "Content of page", class: "form-label" %>
+    <%= form.text_area :content, class: "tinymce form-control"%>
+    <%=tinymce%>
+  </div>
+
+  <div class="mb-3" id="des">
+    <%= form.label :destination, class: "form-label" %>
+    <%= form.text_field :destination, class: "form-control"%>
+    <div class="form-text">Link to the url you want the page to link to</div>
+  </div>
+
+  <div class="mb-3" id="PDF">
+    <%= form.label :doc %>
+    <%= form.file_field :doc, class: 'form-control' %>  
+    <div class="form-text">Upload the PDF file here.</div>
+  </div>
+
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+  
+<% end %>

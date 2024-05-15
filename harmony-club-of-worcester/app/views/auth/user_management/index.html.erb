@@ -1,0 +1,41 @@
+<h1 class="text-center">Manage Users</h1>
+
+<div class="row user-management-large-screen-display">
+  <% @users.each do |user| %>
+    <div class="col-lg-3 col-md-6">
+      <div class="card border-primary m-3 userManagementCards">
+        <div class="card-body text-center text-primary p-2">
+          <h6 class="text-truncate"><%= user.email %></h6> <%= link_to '', auth_user_management_show_path(id: user.id), class: "stretched-link opacity-0" %>
+        </div>
+      </div>
+      <%= link_to 'Delete', auth_user_management_index_path(id: user.id), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+</div>
+
+<div class="user-management-small-screen-display">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= link_to 'Manage', auth_user_management_show_path(id: user.id), class: "btn btn-lg btn-primary" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr></tr>
+    </tfoot>
+  </table>
+</div>
+
+<div class="p-3 text-center">
+  <%= link_to 'Back to Control Panel', auth_site_panel_path, class: "btn btn-primary" %>
+  <%= link_to 'Add User', auth_user_management_new_path, class: 'btn btn-primary' %>
+</div>

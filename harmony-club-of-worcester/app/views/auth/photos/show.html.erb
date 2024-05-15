@@ -1,0 +1,41 @@
+<h1 class="text-center"><%= @photo.title %></h1>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Photo Title:</div>
+      <%= @photo.title %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Located in Album:</div>
+      <%= @photo.album.title %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Photo Description:</div>
+      <%= @photo.description %>
+    </div>
+  </li>
+
+  
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Image:</div>
+      <% if @photo.image.attached? %>
+        <%= image_tag (@photo.image), class:"photoContainer", alt: "Photo of "+@photo.title %>
+      <% else %>
+        No image attached
+      <% end %>
+    </div>
+  </li>
+</ul>
+
+<div class="text-center">
+<%= link_to 'Edit', edit_auth_photo_path(@photo), class: "btn btn-primary" %>
+<%= link_to 'Back', auth_photos_path, class: "btn btn-primary" %>
+</div>

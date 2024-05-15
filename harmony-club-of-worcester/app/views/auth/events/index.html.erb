@@ -1,0 +1,31 @@
+<h1 class="text-center">Events</h1>
+
+<div class="row mt">
+  <% @events.each do |event| %>
+  <div class="col-xl-3 col-lg-4 col-md-6 photoContainer mt-4">
+    <% if event.photo.attached? %>
+      <%= image_tag event.photo, class: "d-flex mx-auto h-50 w-auto mw-100", alt: "Photo of "+event.title %>
+    <% else %>
+    <%= image_tag "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fvignette3.wikia.nocookie.net%2Flego%2Fimages%2Fa%2Fac%2FNo-Image-Basic.png%2Frevision%2Flatest%3Fcb%3D20130819001030&f=1&nofb=1", class: "d-flex mx-auto h-50 w-auto mw-100", alt: "No image attached" %>
+    
+    <!-- https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fvignette3.wikia.nocookie.net%2Flego%2Fimages%2Fa%2Fac%2FNo-Image-Basic.png%2Frevision%2Flatest%3Fcb%3D20130819001030&f=1&nofb=1 -->
+    <% end %>
+    <div>
+      <h5 class="text-center"><%= event.title %></h5>
+      <p class="text-center">Start: <%= event.eventstart.strftime("%B %d, %Y %l:%M %p") %></p>
+      <p class="text-center">End: <%= event.eventend.strftime("%B %d, %Y %l:%M %p") %></p>
+      <div class="text-center">
+        <%= link_to 'View', auth_event_path(event), class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_auth_event_path(event), class: "btn btn-outline-warning" %>
+        <%= link_to 'Delete', auth_event_path(event), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    
+  </div>
+  <% end %>
+</div>
+
+<div class="text-center p-3">
+  <%= link_to 'Back to Control Panel', auth_site_panel_path, class: "btn btn-primary" %>
+  <%= link_to 'New Event', new_auth_event_path, class: "btn btn-primary" %>
+</div>

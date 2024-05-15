@@ -1,0 +1,74 @@
+ <div class="card mx-auto mt-5" style="max-width: 30rem; border-radius: 0px;">
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col">
+        <h5 class="fw-bold text-primary" id="logInButton"> Log In </h5>
+      </div>
+    </div>
+  </div>
+</div>
+    <div id="formContainerSignIn">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), id: "logInForm") do |f| %>
+        <div class="card mx-auto" style="max-width: 30rem; border-radius: 0px;">
+          <div class="card-body">
+            <div class="form-floating">     
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com", class: "form-control", required: true %>
+              <%= f.label :email %>
+            </div>
+
+            <div class="form-floating">    
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "password", required: true %>
+              <%= f.label :password %>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto" style="max-width: 29rem;">
+          <div class="row mt-4">
+            <div class="col bg-primary text-light text-center rounded py-1" id="logInBG" style="transform: rotate(0); transition-property: background-color; transition-duration: 0.125s;">
+              <div class="row">
+                <div class="col-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" id="doorIcon" class="bi bi-door-open-fill mt-2" viewBox="0 0 16 16">
+                    <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2h.5a.5.5 0 0 1 .5.5V15h-1V2zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+                  </svg>
+                </div>
+                <div class="col">
+                  <%= button_tag "Login to your account", class: "text-light rounded stretched-link", id: "deviseLogInButton", style: "font-weight: 700; padding: 0.375rem 0.75rem; background-color: transparent; border: none; font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;" %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 justify-content-between">
+            <div class="col-lg-6 col-sm-12 bg-danger text-light text-center rounded py-2" id="rememberBG" style="transform: rotate(0); transition-property: background-color; transition-duration: 0.125s;">
+              <% if devise_mapping.rememberable? %>              
+                <div class="row">
+                  <div class="col-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="checkCircle" style="display: none;" width="25" height="25" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" id="xCircle" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                    </svg>
+                  </div>
+                  <div class="col">
+                    <%= f.check_box :remember_me, class: "btn-check", style: "display:none;" , id: "btn-check-outlined" %>
+                    <%= f.label "Remember login", type: "button", class: "text-light stretched-link", style: "border: none; font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;", for: "btn-check-outlined", id: "rememberButton"%>        
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="col-lg-6 col-sm-12 bg-danger text-light text-center rounded py-2" id="forgotBG" style="transform: rotate(0);  transition-property: background-color; transition-duration: 0.125s;">
+              <div class="row">
+                <div class="col-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" id="questionIcon" class="bi bi-question-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+                  </svg>
+                </div>
+                <div class="col">
+                  <div><%= link_to "Forgot password", new_password_path(resource_name), id: "deviseForgotButton", class: "link-light stretched-link", style: "text-decoration: none; border: none; font-family: Montserrat, -apple-system, dBlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;"%></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>

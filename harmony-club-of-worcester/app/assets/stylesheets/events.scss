@@ -1,0 +1,80 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.calendarImageMarginBottom {
+    margin-bottom: 0.9rem;
+}
+
+#sideBar{
+  overflow-x: auto;
+  scrollbar-gutter: var(--gutter, auto);
+  max-width: 98%;
+  white-space: nowrap;
+}
+
+.seeMore{
+  cursor: pointer;
+}
+
+@media (max-width: 992px){
+  #calendarContainer{
+    display: none;
+  }
+
+  #sideBar{
+    overflow-y: auto;
+    scrollbar-gutter: var(--gutter, auto);
+    max-height: 715px;
+  }
+
+  .sideCards{
+    margin: 0.5rem;
+  }
+}
+
+.sideCards{
+  transition: all 0.3s ease-in-out;
+  min-width: 270px;
+  max-width: 270px;
+  display: inline-block;
+  margin: 1rem;
+}
+
+.sideCards:hover{
+  transform: scale(1.1);
+}
+
+.eventCard{
+  max-width: 155px;
+  transition: all 0.7s ease-in-out;
+}
+
+.eventCard:hover{
+  max-width: 600px;
+  transform: scale(1.1);
+}
+
+#overflowCalendar{
+    overflow-x: auto;
+    scrollbar-gutter: var(--gutter, auto);
+    white-space: nowrap;
+}
+
+.eventCardImage{
+  max-height: 155px;
+}
+
+.calendarIcons{
+  color: #198754;
+}
+
+.calendarIconContainer{
+  position: relative; 
+  float: right;
+  transition: all 0.1s ease-in-out;
+}
+
+.calendarIconContainer:hover{
+  transform: scale(1.1);
+}

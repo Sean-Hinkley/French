@@ -1,0 +1,27 @@
+<%= render "devise/shared/error_messages", resource: resource %>
+<div class="card mx-auto mt-5" style="max-width: 30rem;">
+  <div class="card-body">
+    <h5 class="text-center text-primary">Forgot your password?</h2>
+    <hr style="margin-top: 0.075rem;">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <div class="form-floating">     
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "name@example.com", class: "form-control", required: true  %>
+        <%= f.label :email %>
+      </div>
+
+      <div class="actions">
+        <div class="row mt-4">
+          <div class="col">
+             <p><%= f.submit "password reset instructions", class: "btn btn-primary w-100", style: "font-weight: 700; font-size: 1.2rem;  font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;" %></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <%= link_to "Go Back", new_user_session_path, class: "btn btn-primary w-100", style: "font-weight: 700; font-size: 1.2rem;  font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;" %>
+          </div>
+        </div>
+      </div>
+    <% end %>   
+  </div>
+</div>

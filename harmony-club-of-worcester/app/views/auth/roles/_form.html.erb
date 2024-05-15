@@ -1,0 +1,26 @@
+<%= form_with(model: [:auth, role]) do |form| %>
+  <% if role.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% role.errors.each do |error| %>
+          <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center mt-2 alertStyles" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              <b><%= error.full_message %></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

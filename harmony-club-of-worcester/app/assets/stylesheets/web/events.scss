@@ -1,0 +1,41 @@
+// Place all the styles related to the public/events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.cardBorderColor {
+    border-color: #fd7e14;
+}
+
+.eventLinkColor {
+    color: #fd7e14;
+}
+
+.webEventsIndexPathBackgroundColor {
+    background-color: #00075E;
+}
+
+.eventsShowCardWidth {
+    max-width: 36rem;
+}
+
+.eventColStyles {
+    max-height: 300px;
+    min-height: 300px;
+}
+
+.eventTopCardText {
+    position: relative;
+    top: 25%;
+}
+
+.eventCardBorder {
+    border-color: #a85100;
+}
+
+.eventSmallColor {
+    color: #a85100;
+}
+
+.eventSmallColor:hover{
+    color: #a85100;
+}

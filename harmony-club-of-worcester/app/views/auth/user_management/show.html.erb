@@ -1,0 +1,19 @@
+<h1 class="text-center"><%= @user.email %></h1>
+
+<div id="checkbox" class="mb-3">
+	<div class="card-header">Roles</div>
+	<div class="border border-top-0 border-3 p-3">
+		<% @roles.each do |role| %>
+			<% if role.title != "«Temp Role»"%>
+			<div class="d-block">
+				<%= check_box_tag role.title, role.title, @user.roles.include?(@roles.find(role.id)) %>
+				<%= label_tag role.title, role.title.titleize %>
+			</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+
+<div class="text-center mb-3">
+	<%= link_to 'Back', auth_user_management_index_path, class: "btn btn-primary" %>
+</div>

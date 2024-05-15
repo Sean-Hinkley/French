@@ -1,0 +1,159 @@
+<h1 class="text-center">Permissions</h1>
+
+<div class="row">
+  <% @permissions.each do |permission| %>
+
+  <!-- Large Screen Display -->
+  <div class="col-lg-3 col-md-6 d-flex justify-content-center mb-3 permission-responsive-hide-small">
+    <div class="card border-danger bootstrapCard">
+      <div class="card-body">
+        <h5 class="card-title text-center"><%= permission.role.title %></h5>
+        <% if !permission.allRecords %>
+        <h5 class="card-title text-center"><%= permission.permissible_type %></h5>
+        <h5 class="card-title text-center"><%= permission.permissible.title %></h5>
+        <% else %>
+        <h5 class="card-title text-center">All <%= permission.permissible_type %>s</h5>
+        <% end %>
+      </div>
+     <table class="table">
+      <thead class="text-danger">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if permission.allRecords %>
+        <tr>
+          <td>Can create new <%= permission.permissible_type %>s</td>
+          <% if permission.canCreate %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Can read all <%= permission.permissible_type %>s</td>
+          <% if permission.canRead %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Can edit all <%= permission.permissible_type %>s</td>
+          <% if permission.canUpdate %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Can delete all <%= permission.permissible_type %>s</td>
+          <% if permission.canDelete %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <% else %>
+        <tr>
+          <td>Can view <%= permission.permissible.title %> <%= permission.permissible_type %></td>
+          <% if permission.canRead %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>Can edit <%= permission.permissible.title %> <%= permission.permissible_type %></td>
+          <% if permission.canUpdate %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill text-success" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </svg>
+          </td>
+          <% else %>
+          <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill text-danger" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+            </svg>
+          </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot class="text-danger tableFooterDanger">
+      </tfoot>
+    </table>
+      <div class="card-body text-center">
+        <%= link_to 'View', auth_permission_path(permission), class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_auth_permission_path(permission), class: "btn btn-outline-warning" %>
+        <%= link_to 'Delete', auth_permission_path(permission), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small Screen Display -->
+  <div class="permission-responsive-hide-large row mb-3 p-1 g-0 border-bottom border-danger">
+    <div class="col-12 text-center">
+      <% if permission.allRecords %>
+      <div class="fw-bold"><%= permission.role.title %> | All <%= permission.permissible_type %>s</div>
+      <% else %>
+      <div class="fw-bold"><%= permission.role.title %> | <%= permission.permissible_type %> | <%= permission.permissible.title %></div>
+      <% end %>
+    </div>
+    <div class="col-12 text-center">
+      <%= link_to 'View', auth_permission_path(permission), class: "btn btn-outline-primary btn-lg" %>
+      <%= link_to 'Edit', edit_auth_permission_path(permission), class: "btn btn-outline-warning btn-lg" %>
+      <%= link_to 'Delete', auth_permission_path(permission), class: "btn btn-outline-danger btn-lg", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+<div class="text-center p-3">
+  <%= link_to 'Back to Control Panel', auth_site_panel_path, class: "btn btn-primary" %>
+  <%= link_to 'New Permission', new_auth_permission_path, class: "btn btn-primary" %>
+</div>

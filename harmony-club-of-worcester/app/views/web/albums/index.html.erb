@@ -1,0 +1,73 @@
+<% if @noAlbums == false %>
+  <h1 class="text-center">Photo Albums</h1>
+  <% @albums.each do |album| %>
+        <h3><%=album.title%></h3>
+        <p>
+          <%=album.description%>
+        </p>
+        
+        <hr>
+        <div class="top-border">
+          <div class="responsive">
+          <!-- shows all photos in an album --> 
+          <%if album.photos.empty?%>
+            <div class="row text-center m-5">This album is currently empty</div>
+            <%else%>
+            <% album.photos.each do |photo| %>
+              <%if photo.image.attached?%>
+                <div class="row"><%= link_to image_tag(photo.image, alt: photo.description, class:"img-fluid w-75 rounded"), web_albums_show_path(id: photo.id) %></div>
+              <%end%>
+            <%end%>
+            <%end%>
+          </div>
+        </div>
+  <% end %>
+<% else %>
+  <div class="text-center">
+    <%= image_tag "empty", class: "img-fluid mb-5 mt-5 mx-auto" %>
+    <h1 class="fw-light text-secondary"> There are currently no Albums</h1>
+  </div>
+<% end %>
+
+<!--<#%= javascript_include_tag "javascript/albumsindex.js", "data-turbolinks-track" => true %>-->
+<!-- The external JS file for the slick.js code doesn't seem to work for some reason unbeknownst to me -->
+ 
+<script>
+// this is the code to make the sildeshow work,
+// it doesn't like being in an external file.
+  $('.responsive').slick({
+          arrows: true,
+          infinite: true,
+          speed: 300,
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+            // You can unslick at a given breakpoint now by adding:
+            // settings: "unslick"
+            // instead of a settings object
+          ]
+        });
+        </script>

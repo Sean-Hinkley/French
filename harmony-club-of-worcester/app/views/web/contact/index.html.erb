@@ -1,0 +1,52 @@
+<div class="card mx-auto mt-5" id="mainCard">
+  <div class="card-body">
+    <div class="row text-center">
+      <div class="col">
+        <h5 class="fw-bold text-primary"> Contact Us </h5>
+      </div>
+    </div>
+    <hr id="headerHR">
+    <!-- Start of the form -->
+    <%= form_with do |form| %>
+      <div class="row">
+        <div class="col">
+          <div class="form-floating">     
+            <%= form.text_field :first, id: "floatFirstName", class: "form-control", placeholder: "Your first name here" %>
+            <%= form.label :first %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-floating">    
+            <%= form.text_field :last, id:"floatLastName", class:"form-control", placeholder: "Your last name here" %>
+            <%= form.label :last %>
+          </div>
+        </div>
+      </div>
+      <div class="form-floating">
+        <%= form.text_field :address, id: "floatEmail", class: "form-control", placeholder: "Your email here" %>
+        <%= form.label "Email Address"%>
+      </div>
+      <div class="form-floating">
+        <%= form.text_field :subject, id: "floatSubject", class: "form-control", placeholder: "The subject here" %>
+        <%= form.label :subject %>
+      </div>
+      <div class="form-floating text-center">
+        <%= form.text_area :message, id: "floatMessage", class: "form-control", placeholder: "Your message here" %>
+        <%= form.label :message %>
+      </div>
+      <div class="col bg-primary text-light text-center rounded py-1 mt-5 mx-auto ps-2" id="emailUsBG" style="transform: rotate(0); transition-property: background-color; transition-duration: 0.125s;">
+        <div class="row">
+          <div class="col-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-envelope-check-fill mt-2" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+              <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-1.993-1.679a.5.5 0 0 0-.686.172l-1.17 1.95-.547-.547a.5.5 0 0 0-.708.708l.774.773a.75.75 0 0 0 1.174-.144l1.335-2.226a.5.5 0 0 0-.172-.686Z"/>
+            </svg>
+          </div>
+          <div class="col">
+            <%= form.submit "Email us!", class: "text-light rounded stretched-link", id: "emailUsButton", style: "font-weight: 700; padding: 0.375rem 0.75rem; background-color: transparent; border: none; font-size: 1.5rem; font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="calendar-heading text-center">
+  <%= link_to (image_tag("outline_chevron_left_black_48dp", class: "img-fluid calendarImageMarginBottom", alt:"Previous month")), calendar.url_for_previous_view %>
+  <span class="calendar-title fs-1 fw-bold"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></span>
+  <%= link_to (image_tag("outline_chevron_right_black_48dp", class: "img-fluid calendarImageMarginBottom", style: "margin-bottom: 0.9rem;", alt:"Next month")), calendar.url_for_next_view %>
+</div>
+<div class="simple-calendar" id="overflowCalendar">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: [calendar.td_classes_for(day)] do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% if canCreateEvent %>
+                  <div class="calendarIconContainer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20" class="calendarIcons"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path fill="currentColor" d="M96 32C96 14.33 110.3 0 128 0C145.7 0 160 14.33 160 32V64H288V32C288 14.33 302.3 0 320 0C337.7 0 352 14.33 352 32V64H400C426.5 64 448 85.49 448 112V160H0V112C0 85.49 21.49 64 48 64H96V32zM448 464C448 490.5 426.5 512 400 512H48C21.49 512 0 490.5 0 464V192H448V464zM200 272V328H144C130.7 328 120 338.7 120 352C120 365.3 130.7 376 144 376H200V432C200 445.3 210.7 456 224 456C237.3 456 248 445.3 248 432V376H304C317.3 376 328 365.3 328 352C328 338.7 317.3 328 304 328H248V272C248 258.7 237.3 248 224 248C210.7 248 200 258.7 200 272z"/></svg>
+                    <%= link_to "", new_auth_event_path(eventstart: day, eventend: day), class: "opacity-0 stretched-link invisCalendarLink" %>
+                  </div>
+                <% end %> 
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

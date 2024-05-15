@@ -1,0 +1,11 @@
+// Place all the styles related to the auth/user_management controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.userManagementCards{
+  transition: all 0.3s ease-in-out;
+}
+
+.userManagementCards:hover{
+  transform: scale(1.1);
+}

@@ -1,0 +1,24 @@
+<h1 class="text-center">Sponsors</h1>
+
+<div class="row">
+  <% @sponsors.each do |sponsor| %>
+  <div class="justify-content-center col-lg-3 col-md-6 col-sm-12 pb-3 photoContainer">
+      <% if sponsor.image.attached? %>
+        <%= image_tag sponsor.image, class: "d-flex mx-auto h-50 w-auto mw-100", alt: sponsor.title + " logo" %>
+      <% end %>
+      <div class="card-body text-center">
+          <h5 class="card-title"><%= sponsor.title %></h5>
+          <div class="text-center">
+              <%= link_to 'View', auth_sponsor_path(sponsor), class: "btn btn-outline-primary" %>
+              <%= link_to 'Edit', edit_auth_sponsor_path(sponsor), class: "btn btn-outline-warning" %>
+              <%= link_to 'Delete', auth_sponsor_path(sponsor), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+      </div>
+  </div>
+  <% end %>
+</div>
+
+<div class="text-center p-3">
+  <%= link_to 'Back to Control Panel', auth_site_panel_path, class: "btn btn-primary" %>
+  <%= link_to 'New Sponsor', new_auth_sponsor_path, class: "btn btn-primary" %>
+</div>

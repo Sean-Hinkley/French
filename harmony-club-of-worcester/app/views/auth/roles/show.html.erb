@@ -1,0 +1,33 @@
+<h1 class="text-center border-bottom pb-3 border-dark">Role: <%= @role.title %></h1>
+
+<h3 class="text-center"><%= @role.title %> has access to:</h3>
+<div class="text-center border-bottom border-dark">
+<% if @role.permissions.empty? %>
+  <h3>Nothing</h3>
+<% else %>
+  <% @role.permissions.each do |permission| %>
+    <% if permission.allRecords %>
+    <p>All <%= permission.permissible_type %>s</p>
+    <% else %>
+    <p><%= permission.permissible_type %> -> <%= permission.permissible.title %></p>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+
+<h3 class="text-center">Users with <%= @role.title %>:</h3>
+<div class="text-center">
+  <% if @role.users.empty? %>
+    <h3>No users</h3>
+  <% else %>
+    <% @role.users.each do |user| %>
+      <p><%= user.email %></p>
+    <% end %>
+  <% end %>
+</div>
+
+
+<div class="text-center">
+  <%= link_to 'Edit', edit_auth_role_path(@role), class: "btn btn-primary" %>
+  <%= link_to 'Back', auth_roles_path, class: "btn btn-primary" %>
+</div>

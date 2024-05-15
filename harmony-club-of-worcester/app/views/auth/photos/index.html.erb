@@ -1,0 +1,22 @@
+<h1 class="text-center">Photos</h1>
+
+<div class="row">
+<% @photos.each do |photo| %>
+  <div class="col-lg-3 col-md-6 photoContainer">
+    <% if photo.image.attached? %>
+    <%= image_tag photo.image, class: "img-thumbnail d-flex mx-auto h-50 w-auto", alt: "Photo of "+photo.title %>
+    <% end %>
+    <h5 class="text-center pt-1"><%= photo.title %></h5>
+    <div class="text-center">
+      <%= link_to 'View', auth_photo_path(photo), class: "btn btn-outline-primary" %>
+      <%= link_to 'Edit', edit_auth_photo_path(photo), class: "btn btn-outline-warning" %>
+      <%= link_to 'Delete', auth_photo_path(photo), class: "btn btn-outline-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<div class="text-center p-3">
+  <%= link_to 'Back to Control Panel', auth_site_panel_path, class: "btn btn-primary" %>
+  <%= link_to 'New Photo', new_auth_photo_path, class: "btn btn-primary" %>
+</div>

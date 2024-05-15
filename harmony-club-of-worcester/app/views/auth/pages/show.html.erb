@@ -1,0 +1,75 @@
+<h1 class="text-center"><%= @page.title %></h1>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Title:</div>
+      <%= @page.title %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Navigation Section:</div>
+      <%= @page.section.title %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Page Type:</div>
+      <%= @page.page_type %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Name of URL:</div>
+      <%= @page.permalink %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Visible:</div>
+      <%= @page.visible %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Position in menu:</div>
+      <%= @page.position %>
+    </div>
+  </li>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Have users authenticate:</div>
+      <%= @page.authenticate %>
+    </div>
+  </li>
+
+<%if @page.page_type != "Basic Page"%>
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Destination:</div>
+      <%= @page.destination %>
+    </div>
+  </li>
+
+<%else %>
+
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <div class="fw-bold">Content of page:</div>
+      <%= raw @page.content %>
+    </div>
+  </li>
+<%end%>
+</ul>
+
+<div class="text-center">
+  <%= link_to 'Edit', edit_auth_page_path(@page), class: "btn btn-primary" %>
+  <%= link_to 'Back', auth_sections_path, class: "btn btn-primary" %>
+</div>

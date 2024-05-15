@@ -1,0 +1,24 @@
+<div class="pb-3">
+  <div class="card mx-auto shadow eventsShowCardWidth">
+    <% if @event.photo.attached?%>
+      <%= image_tag @event.photo, class: "img-fluid card-img-top", alt: "Photo of "+@event.title %>
+    <% end %>
+    <div class="card-body">
+      <h1 class="text-center fw-bold"><%= @event.title %></h1>
+      <hr>
+      <% if @event.details != "" %>
+        <%= raw @event.details %>
+        <hr>
+        
+      <% end %>
+      <p class="card-text"></p>
+      <% if @event.schedule != nil %>
+        <%= render 'repeatingShow'%>
+      <% else %>
+        <%= render 'regularShow'%>
+      <% end %>
+      <hr>
+      <div class="text-center"><%= link_to "Go Back", web_events_index_path ,class: "btn text-light fw-bold webEventsIndexPathBackgroundColor" %></div>
+    </div>
+  </div>
+</div>

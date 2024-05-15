@@ -1,0 +1,241 @@
+<!-- Start of upcoming events -->
+<!-- If statement checks if there is at least one upcoming event -->
+<% if @noUpcoming == false %>
+  <!-- Start of Upcoming Events row -->
+  <div class="row">
+    <h1 class="mt-3 text-center"> Upcoming Events </h1>
+    <!-- Start of Scrollbar -->
+    <div class="col mt-2 mx-auto"  id="sideBar">
+      <div data-bs-spy="scroll" data-bs-offset="0" class="scrollspy-example mt-2" tabindex="0">
+        <div class="row flex-nowrap justify-content-center" id="centerRow">
+          <% @upComingEvents.each do |event| %>
+            <div class="col-md-6 col-lg-3">
+              <!-- Start of card if it has an image-->
+              <% if event.photo.attached?%>
+                <!-- Start of card if it doesn't repeat -->
+                <% if event.schedule == nil %>
+                  <div class="card shadow sideCards">
+                    <div class="row g-0">
+                      <div class="col-md-12 eventColStyles">
+                        <%= image_tag event.photo.variant(resize_to_fit: [266, 155]), class: "card-img-top eventCardImage", alt: "Photo of "+event.title %>   
+                        <div class="card-body text-center text-wrap">
+                          <h5 class="card-title"><%= event.title %></h5>
+                          <p class="card-text"><small class="text-muted"> Start: <%= event.eventstart.strftime("%B %d, %Y %l:%M %p") %></small></p>
+                          <hr> 
+                          <p class="card-text"><small class="text-muted"> End: <%= event.eventend.strftime("%B %d, %Y %l:%M %p") %></small></p>
+                        </div>
+                      </div>
+                    </div>
+                    <%= link_to "Invisible Link", web_events_show_path(id: event.id), class: "stretched-link opacity-0"%>
+                  </div>
+                <!-- End of card if it doesn't repeat -->
+                <!-- Start of card if it does repeat -->
+                <% else %>
+                  <% @nextEvent = event.schedule.next_occurrence() %>
+                  <div class="card shadow sideCards">
+                    <div class="row g-0">
+                      <div class="col-md-12 eventColStyles">
+                        <%= image_tag event.photo.variant(resize_to_fit: [266, 155]), class: "card-img-top eventCardImage", alt: "Photo of "+event.title %>   
+                        <div class="card-body text-center text-wrap">
+                          <h5 class="card-title"><%= event.title %></h5>
+                          <p class="card-text"><small class="text-muted"> Start: <%= event.eventstart.strftime("%l:%M %p") %></small></p>
+                          <p class="card-text"><small class="text-muted"> End: <%= event.eventend.strftime("%l:%M %p") %></small></p>
+                          <hr> 
+                          <p class="card-text"><small class="text-muted"> Repeats: <%= event.occurence %></small></p>
+                          <p class="card-text"><small class="text-muted"> Next Event: <%= @nextEvent.strftime("%B %d, %Y %l:%M %p") %></small></p>
+                        </div>
+                      </div>
+                    </div>
+                    <%= link_to "Invisible Link", web_events_show_path(id: event.id), class: "stretched-link opacity-0"%>
+                  </div>
+                <!-- End of card if it doesn't repeat -->
+                <% end %>
+              <!-- End of card if it has an image -->
+              <!--Start of card if it doesn't have an image -->
+              <% else %>
+                <% if event.schedule == nil %>
+                  <div class="card shadow text-center sideCards">
+                    <div class="row g-0">
+                      <div class="col-md-12 eventColStyles">
+                        <div class="card-body text-center text-wrap eventTopCardText">
+                          <h5 class="card-title"><%= event.title %></h5>
+                          <!-- <p class="card-text"><%= raw event.details %></p> -->
+                          <p class="card-text"><small class="text-muted"> Start: <%= event.eventstart.strftime("%B %d, %Y %l:%M %p") %></small></p>
+                          <hr> 
+                          <p class="card-text"><small class="text-muted"> End: <%= event.eventend.strftime("%B %d, %Y %l:%M %p") %></small></p>
+                        </div>
+                      </div>
+                    </div>
+                    <%= link_to "Invisible Link", web_events_show_path(id: event.id), class: "stretched-link opacity-0"%>
+                  </div>
+                <% else %>
+                  <% @nextEvent = event.schedule.next_occurrence() %>
+                  <div class="card shadow sideCards">
+                    <div class="row g-0">
+                      <div class="col-md-12 eventColStyles">   
+                        <div class="card-body text-center text-wrap eventTopCardText">
+                          <h5 class="card-title"><%= event.title %></h5>
+                          <div class="card-text"><small class="text-muted"> Start: <%= event.eventstart.strftime("%l:%M %p") %></small></div>
+                          <div class="card-text"><small class="text-muted"> End: <%= event.eventend.strftime("%l:%M %p") %></small></div>
+                          <hr> 
+                          <div class="card-text"><small class="text-muted"> Repeats: <%= event.occurence %></small></div>
+                          <div class="card-text"><small class="text-muted"> Next Event: <%= @nextEvent.strftime("%B %d, %Y %l:%M %p") %></small></div>
+                        </div>
+                      </div>
+                    </div>
+                    <%= link_to "Invisible Link", web_events_show_path(id: event.id), class: "stretched-link opacity-0"%>
+                  </div>
+                <% end %>
+              <% end %>
+              <!-- End of card if it doesn't have an image -->
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- End of scroll bar -->
+  </div>
+  <!-- End of Upcoming Events row -->
+  <hr class="divider">
+<% end %>
+<!-- Start of mobile screen if there are no upcoming events -->
+<% if @noUpcoming == true %>
+  <div class="text-center">
+    <%= image_tag "empty", class: "img-fluid mb-5 mt-5 eventEmpty mx-auto" %>
+    <h1 class="eventEmpty fw-light text-secondary"> There are currently no upcoming events</h1>
+    <hr>
+  </div>
+<% end %>
+<!-- End of mobile screen if there are no upcoming events -->
+<!-- Start of calandar section -->
+<div id="calendarContainer">
+  <!-- Start of Calendar -->
+  <div class="row mt-2">
+    <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
+      <%= month_calendar events: @events, attribute: :eventstart, end_attribute: :eventend do |date, events| %>
+        <%= date.strftime("%d")%>
+        <% @recurringEvents.each do |event| %>
+          <% event.schedule.occurrences(DateTime.now.next_year(2).to_time).drop(1).each do |occurence| %>
+            <% if date.strftime("%d%Y%b") == occurence.strftime("%d%Y%b") %>
+              <% if date < Date.today %>
+                <div class="card eventCard m-2 border-secondary">
+                  <div class="p-1 text-truncate text-center text-secondary">
+                    <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-secondary text-decoration-none stretched-link"%></small>
+                  </div>
+                </div>
+              <!-- Ending Event Card -->
+              <% elsif event.eventend.strftime("%b/%d") == date.strftime("%b/%d") and event.eventend.strftime("%b/%d") != event.eventstart.strftime("%b/%d")%>  
+                <div class="card border-danger text-danger eventCard m-2">
+                  <div class="p-1 text-truncate text-center">
+                    <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-danger text-decoration-none stretched-link" %></small>
+                  </div>
+                </div>
+              <!-- Starting and Ending Card -->
+              <% elsif event.eventend.strftime("%b/%d") == event.eventstart.strftime("%b/%d") %>
+                <div class="card eventCard m-2 eventCardBorder">
+                  <div class="p-1 text-truncate text-center">
+                    <small><%= link_to event.title, web_events_show_path(id: event.id), class: "text-decoration-none stretched-link eventSmallColor" %></small>
+                  </div>
+                </div>
+              <!-- Middle Event Card-->
+              <% elsif event.eventend.strftime("%b/%d") != date.strftime("%b/%d") and event.eventstart.strftime("%b/%d") != date.strftime("%b/%d") %>
+                <div class="card border-primary text-primary eventCard m-2">
+                  <div class="p-1 text-truncate text-center">
+                    <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-primary text-decoration-none stretched-link" %></small>
+                  </div>
+                </div>
+              <!-- Start Event Card -->
+              <% else %>
+                <div class="card border-success text-success eventCard m-2">
+                  <div class="p-1 text-truncate text-center">
+                    <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-success text-decoration-none stretched-link" %></small>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <% events.each do |event| %>
+          <!-- Past Event Card -->
+          <% if date < Date.today %>
+            <div class="card eventCard m-2 border-secondary">
+              <div class="p-1 text-truncate text-center text-secondary">
+                <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-secondary text-decoration-none stretched-link"%></small>
+              </div>
+            </div>
+          <!-- Ending Event Card -->
+          <% elsif event.eventend.strftime("%b/%d") == date.strftime("%b/%d") and event.eventend.strftime("%b/%d") != event.eventstart.strftime("%b/%d")%>  
+            <div class="card border-danger text-danger eventCard m-2">
+              <div class="p-1 text-truncate text-center">
+                <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-danger text-decoration-none stretched-link" %></small>
+              </div>
+            </div>
+          <!-- Starting and Ending Card -->
+          <% elsif event.eventend.strftime("%b/%d") == event.eventstart.strftime("%b/%d") %>
+            <div class="card eventCard m-2 eventCardBorder">
+              <div class="p-1 text-truncate text-center">
+                <small><%= link_to event.title, web_events_show_path(id: event.id), class: "text-decoration-none stretched-link eventSmallColor" %></small>
+              </div>
+            </div>
+          <!-- Middle Event Card-->
+          <% elsif event.eventend.strftime("%b/%d") != date.strftime("%b/%d") and event.eventstart.strftime("%b/%d") != date.strftime("%b/%d") %>
+            <div class="card border-primary text-primary eventCard m-2">
+              <div class="p-1 text-truncate text-center">
+                <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-primary text-decoration-none stretched-link" %></small>
+              </div>
+            </div>
+          <!-- Start Event Card -->
+          <% else %>
+            <div class="card border-success text-success eventCard m-2">
+              <div class="p-1 text-truncate text-center">
+                <small><%= link_to event.title, web_events_show_path(id: event.id), class: "link-success text-decoration-none stretched-link" %></small>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <!-- End of calendar -->
+  <hr class="divider">
+  <!-- Start of calendar legend -->
+  <div class="row justify-content-center pb-2">
+    <h2 class="text-center">Calendar Legend</h2>
+    <div class="col">
+      <div class="card m-2 border-secondary">
+        <div class="p-1 text-center text-secondary">
+          <small>The event has passed</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-danger text-danger m-2">
+        <div class="p-1 text-center">
+          <small>The event is ending</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card m-2 eventCardBorder">
+        <div class="p-1 text-center">
+          <small class="eventSmallColor">The event is starting and ending</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card border-success text-success m-2">
+        <div class="p-1 text-center">
+          <small>The event is starting</small>
+        </div>
+      </div>
+    </div>
+    <div class="col mx-auto">
+      <div class="card border-primary text-primary m-2">
+        <div class="p-1 text-center">
+          <small>The event is a multi-day event</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of calendar legend -->
+</div>

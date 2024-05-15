@@ -1,0 +1,43 @@
+<%= form_with(model: [:auth, section]) do |form| %>
+  <% if section.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% section.errors.each do |error| %>
+          <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center mt-2 alertStyles" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              <b><%= error.full_message %></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :location, class: "form-label" %>
+    <%= form.select :location, ["Main Nav", "Footer", "Main Nav & Footer"], {}, class: "form-select", required: true %>
+    <div class="form-text">Click on the box above to select where your page will appear.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :position, class: "form-label" %>
+    <%= form.number_field :position, class: "form-control", required: true %>
+    <div class="form-text">Field for where this section will show up in the main navigation or footer, ex: a section of position 1 will show up before a section of position 2.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :visible, class: "form-label" %>
+    <%= form.check_box :visible, class: "form-check-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

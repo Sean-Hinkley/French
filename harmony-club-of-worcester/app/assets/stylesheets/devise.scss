@@ -1,0 +1,60 @@
+#deviseLogInButton{
+	font-weight: 700;
+  font-size: 1.4rem;
+}
+#deviseForgotButton{
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+#rememberButton{
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 576px){
+	#forgotBG{
+	  max-width: 45%;
+	}
+
+	#rememberBG{
+	  max-width: 45%;
+	}
+
+	#deviseForgotButton{
+	  font-size: 1rem;
+	}
+
+	#rememberButton{
+	  font-size: 1rem;
+	}
+	#deviseLogInButton{
+	  font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 576px){
+  #rememberBG{
+  	margin-bottom: 1.5rem;
+  }
+
+  #doorIcon{
+    width: 30px;
+    height: 30px;
+  }
+
+  #checkCircle{
+  	width: 25px;
+  	height: 25px;
+  }
+
+  #xCircle{
+  	width: 25px;
+  	height: 25px;
+  }
+
+  #questionIcon{
+  	width: 25px;
+  	height: 25px;
+  }
+}

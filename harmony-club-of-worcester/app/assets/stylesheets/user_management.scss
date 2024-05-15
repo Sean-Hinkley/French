@@ -1,0 +1,14 @@
+.user-management-small-screen-display {
+    display: none;
+}
+
+
+@media (max-width: 767px) {
+    .user-management-large-screen-display {
+        display: none;
+    }
+
+    .user-management-small-screen-display {
+        display: block;
+    }
+}

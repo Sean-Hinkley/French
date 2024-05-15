@@ -1,0 +1,61 @@
+<%= form_with(model: [:auth, permission]) do |form| %>
+  <% if permission.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% permission.errors.each do |error| %>
+          <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center mt-2 alertStyles" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              <b><%= error.full_message %></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :role_id, class: "form-label" %>
+    <%= form.collection_select :role_id, Role.all - Role.where(title: "«Temp Role»"), :id, :title, {}, class: "form-select", required: true  %>
+    <div class="form-text">Click on the box above to select what role this permission applies to.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "What record type would you like to make a permission for?", class: "form-label" %>
+    <%= form.select :permissible_type, ["Album", "Event", "Page", "Photo", "Role", "Section", "Sponsor"], {}, class: "form-select", required: true  %>
+    <div class="form-text">Click on the box above to select what record type this permission applies to.</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.check_box :allRecords, class: "form-check-input"%>
+    <%= form.label "Permission applies to all records", class: "form-label" %>
+  </div>
+
+  <div id="permissible-dropdown-div" class="mb-3">
+  </div>
+
+  <div class="mb-3">
+    <%= form.check_box :canCreate, class: "form-check-input" %>
+    <%= form.label "Can make new records", class: "form-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.check_box :canRead, class: "form-check-input" %>
+    <%= form.label "Can see this record", class: "form-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.check_box :canUpdate, class: "form-check-input" %>
+    <%= form.label "Can edit and update this record", class: "form-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.check_box :canDelete, class: "form-check-input" %>
+    <%= form.label "Can delete this record", class: "form-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

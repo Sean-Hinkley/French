@@ -1,0 +1,6 @@
+<% if @checked == "false" %>
+  console.log("CHECKED!");
+  $("#permissible-dropdown-div").html("<%= j (render partial: 'permissible_id_change') %>");
+<% else %>
+  $("#permissible-dropdown-div").html("");
+<% end %>

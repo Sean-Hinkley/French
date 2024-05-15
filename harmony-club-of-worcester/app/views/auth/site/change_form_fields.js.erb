@@ -1,0 +1,57 @@
+//this is the javascript to hide either the content or destination field 
+//depending on whether or not the page will use the field.
+//(e.g. no content field when linking to an external URL)
+<%if @page_type=="Basic Page"%>
+    if(!document.getElementById('des').classList.contains("d-none"))
+    {
+        document.getElementById('des').classList.add('d-none')
+    }    
+    if(document.getElementById('con').classList.contains("d-none"))
+    {
+        document.getElementById('con').classList.remove('d-none')
+    }
+    if(document.getElementById('pl').classList.contains("d-none"))
+    {
+        document.getElementById('pl').classList.remove('d-none')
+    }
+    if(!document.getElementById('PDF').classList.contains("d-none"))
+    {
+        document.getElementById('PDF').classList.add('d-none')
+    }
+
+<% elsif @page_type=="PDF"%>
+    if(!document.getElementById('des').classList.contains("d-none"))
+    {
+        document.getElementById('des').classList.add('d-none')
+    }
+    if(!document.getElementById('con').classList.contains("d-none"))
+    {
+        document.getElementById('con').classList.add('d-none')
+    }
+    if(!document.getElementById('pl').classList.contains("d-none"))
+    {
+        document.getElementById('pl').classList.add('d-none')
+    }
+    if(document.getElementById('PDF').classList.contains("d-none"))
+    {
+        document.getElementById('PDF').classList.remove('d-none')
+    }
+<% else %>
+    if(document.getElementById('des').classList.contains("d-none"))
+    {
+        document.getElementById('des').classList.remove('d-none')
+    }
+    if(!document.getElementById('con').classList.contains("d-none"))
+    {
+        document.getElementById('con').classList.add('d-none')
+    }
+    if(!document.getElementById('pl').classList.contains("d-none"))
+    {
+        document.getElementById('pl').classList.add('d-none')
+    }
+    if(!document.getElementById('PDF').classList.contains("d-none"))
+    {
+        document.getElementById('PDF').classList.add('d-none')
+    }
+
+<%end%>

@@ -1,0 +1,15 @@
+<% if resource.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center" style="background-color: #b22234; border-color: #b22234; color: #FFFFFF;" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+          <div>
+            <b><%= message %></b>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

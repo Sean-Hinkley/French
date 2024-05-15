@@ -1,0 +1,52 @@
+<%= form_with(model: [:auth, event]) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+        <% event.errors.each do |error| %>
+          <div class="alert alert-danger d-flex alert-dismissible fade show align-items-center mt-2 alertStyles" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+            <div>
+              <b><%= error.full_message %></b>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true  %>
+  </div>
+
+   <div class="mb-3">
+    <%= form.label "Time the even is starting", class: "form-label" %>
+    <%= form.datetime_local_field :eventstart, class: "form-control" %>
+  </div>
+
+   <div class="mb-3">
+    <%= form.label "Time the event is ending", class: "form-label" %>
+    <%= form.datetime_local_field :eventend, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :photo, class: "form-label" %>
+    <%= form.file_field :photo, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label "repeat", class: "form-label", disabled: true %>
+    <%= form.select :occurence, ["never", "weekly", "biweekly", "monthly", "annually"], {}, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :details, class: "form-label" %>
+    <%= form.text_area :details, class: "tinymce form-control" %>
+    <%= tinymce %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

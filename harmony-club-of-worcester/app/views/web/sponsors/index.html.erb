@@ -1,0 +1,22 @@
+<% if @noSponsors == false %>   
+    <h1 class="text-center">Our Sponsors</h1>
+    <!-- Page to display all of the sponsors -->
+    <div class="row">
+    <% @sponsors.each do |sponsor| %>
+      <div class="justify-content-center col-lg-4 col-md-6 col-sm-12 pb-3 photoContainer">
+        <% if sponsor.image.attached? %>
+          <%= image_tag sponsor.image, class: "d-flex mx-auto h-50 w-auto mw-100", alt: sponsor.title+" logo" %>
+        <% end %>
+        <div class="card-body text-center">
+            <h5 class="card-title"><%= sponsor.title %></h5>
+            <%= link_to "Visit Site", sponsor.website, class: "btn btn-primary", target: :_blank %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+<% else %>
+  <div class="text-center">
+    <%= image_tag "empty", class: "img-fluid mb-5 mt-5 mx-auto" %>
+    <h1 class="fw-light text-secondary"> There are currently no sponsors</h1>
+  </div>
+<% end %>
