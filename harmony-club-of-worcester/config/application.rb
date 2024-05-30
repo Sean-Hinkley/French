@@ -13,7 +13,7 @@ module HarmonyClubOfWorcester
 
     config.i18n.available_locales = [:en, :de, :fr]
     config.i18n.default_locale = :en
-    config.asset_host = 'harmonyclubofworcester.org' 
+    #config.asset_host = 'harmonyclubofworcester.org' 
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -65,7 +65,7 @@ document.addEventListener("turbolinks:load", () =>{
   });
   // End of Calendar JS
   //Start of sidebar code, checks if the sidebar can scroll and if it can removes the column class.
-  if(document.getElementById("sideBar").scrollWidth > document.getElementById("sideBar").clientWidth){
+  if(document.getElementById("sideBar") != null && document.getElementById("sideBar").scrollWidth > document.getElementById("sideBar").clientWidth){
     $("#centerRow").removeClass("justify-content-center")
   }
 });

@@ -47,7 +47,7 @@ gem 'rails-i18n'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :production do 
-  gem 'pg'
+  # gem 'pg'
   gem "ed25519"
   gem "bcrypt_pbkdf"
 end

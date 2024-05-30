@@ -1,0 +1,99 @@
+<!-- Navigation-->
+    <nav class="navbar navbar-expand-lg bg-danger text-uppercase fixed-top" id="mainNav">
+      <div class="container">
+        <%= link_to "Harmony Club of Worcester", root_path, class: "navbar-brand", id: "navbarTextWhole" %>
+        <%= link_to "Harmony Club", root_path, class: "navbar-brand", id: "navbarTextSmall" %>
+        <button id="dropdownButton" class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <!-- Code to go through the sections in the database -->
+            <% @sections.each do |section| %>  
+              <li class="nav-item dropdown mx-0 mx-lg-1">
+              <!-- check if the section has more than one page associated with it -->
+                <% if section.pages.first != nil %>
+                  <% if section.pages.first.id != section.pages.last.id %>
+                    <%= link_to section.title, "#", class: "dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown", role: "button", 'aria-expanded': "false", 'data-bs-toggle': "dropdown" %>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-label="navbarDropdown">
+                      <!-- sort pages associated with a section by the position attribute -->
+                      <% section.get_pages().each do |page| %>
+                        <!-- only show the page if the visible attribute is true -->
+                        
+                        <!-- change the type of link depending on what the link is supposed to go to -->
+                          <% if page.page_type == "Basic Page"%>
+                            <% if page.authenticate == true %>
+                              <li class="dropdownBoxes"><%= link_to page.title, auth_site_page_path(id: page.friendly_id), class: "dropdown-item navbarLink" %></li>
+                            <% else %>
+                              <li class="dropdownBoxes"><%= link_to page.title, web_site_page_path(id: page.friendly_id), class: "dropdown-item navbarLink" %></li>
+                            <% end %>
+                          <% elsif page.page_type == "Internal URL" %>
+                            <li class="dropdownBoxes"><%= link_to page.title, page.destination, class: "dropdown-item navbarLink" %></li>
+                          <% elsif page.page_type == "External URL" %>
+                            <li class="dropdownBoxes"><%= link_to page.title, page.destination, class: "dropdown-item navbarLink", target: :_blank %></li>
+                          <% elsif page.page_type == "PDF" %>
+                            <%= link_to page.title, web_pdf_path(page), class: "dropdown-item" %>
+                            
+                          
+                          <% else %>
+                            <li class="dropdownBoxes"><a class="dropdown-item navbarLink" href="#"><%= page.title %></a></li>
+                          <% end %>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <!-- if only has one page, change the section from a dropdown to a normal link -->
+                    <% if section.pages.first.visible == true %>
+                      <% if section.pages.first.page_type == "Basic Page" %>
+                        <% if section.pages.first.authenticate == true %>
+                          <%= link_to section.title, auth_site_page_path(id: section.pages.first.friendly_id), class: "nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown navbarLink" %>
+                        <% else %>
+                          <%= link_to section.title, web_site_page_path(id: section.pages.first.friendly_id), class: "nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown navbarLink" %>
+                        <% end %>
+                      <% elsif section.pages.first.page_type == "Internal URL" %>
+                        <%= link_to section.title, section.pages.first.destination, class: "nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown navbarLink" %>
+                      <% elsif section.pages.first.page_type == "External URL" %>
+                        <%= link_to section.title, section.pages.first.destination, class: "nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown navbarLink", target: :_blank %>
+                      <% elsif section.pages.first.page_type == "PDF" %>
+                            <%= link_to section.title, web_pdf_path(section.pages.first), class: "nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown navbarLink"%>
+                            
+                      <% else %>
+                        <a class="dropdown-item" href="#"><%= section.title %></a>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= link_to section.title, "#", class: "navbarDropdown nav-link text-light py-3 px-0 px-lg-3 rounded text-white navbarLink" %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+          <ul class="navbar-nav ms-auto">
+
+
+
+          <!-- checks if the user is signed in and whether or not they should have access to the control panel-->
+            <% if user_signed_in? %>
+             <%if @perms%>
+             <!-- changes the sign out button to a dropdown to allow a user to access the control panel -->
+             <div class="dropdown">
+              <%= link_to current_user.email, "#", class: "dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded text-white navbarDropdown", role: "button", 'aria-expanded': "false", 'data-bs-toggle': "dropdown" %>
+              <ul class="dropdown-menu dropdown-menu-end" aria-label="navbarDropdown">
+                <li class="dropdownBoxes"><%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item navbarLink" %></li>
+                 <div id="border-div" ></div>
+                <li><%= link_to "Control Panel", auth_site_panel_url, class: "dropdown-item navbarLink" %></li>
+              </ul>
+              </div>
+              <%else%>
+              <!-- shows the user the signout button if they're signed in, but not admin -->
+                <li class="nav-link navbarDropdown mx-0 mx-lg-1 navbarLink"> <%= link_to image_tag("matchsignout.png", class: "acc-button", alt:"sign out button"), destroy_user_session_path, method: :delete, class: "nav-link text-light" %>  </li>
+              <%end%> 
+            <% else %>
+            <!-- show the sign in button if they aren't signed in -->
+              <li class="nav-link navbarDropdown mx-0 mx-lg-1 navbarLink"> <%= link_to image_tag("matchlogin.png", class: "acc-button", alt:"log in button"), auth_site_panel_path, class: "nav-link text-light" %> </li>
+            
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>

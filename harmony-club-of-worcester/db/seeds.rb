@@ -29,3 +29,27 @@ Permission.create(role_id: Role.where(title: "Developer")[0].id, permissible_typ
 Permission.create(role_id: Role.where(title: "Developer")[0].id, permissible_type: "Role", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
 Permission.create(role_id: Role.where(title: "Developer")[0].id, permissible_type: "Section", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
 Permission.create(role_id: Role.where(title: "Developer")[0].id, permissible_type: "Sponsor", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+
+
+
+Section.create(visible: true, position: 1, title: "Activities", location: "Main Nav")
+
+Section.create(visible: true, position: 2, title: "About Us", location: "Main Nav")
+
+Section.create(visible: true, position: 3, title: "Sponsors", location: "Main Nav")
+
+
+Role.create(:title => 'Administrator')
+
+User.create(:email => 's@g.com', :password => 'password', :password_confirmation => 'password')
+
+User.where(email: "s@g.com")[0].roles.append(Role.where(title: "Administrator")[0])
+
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Album", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Event", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Page", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Permission", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Photo", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Role", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Section", allRecords: true, permissible_id: 0, canCreate: false, canRead: true, canUpdate: false, canDelete: false)
+Permission.create(role_id: Role.where(title: "Administrator")[0].id, permissible_type: "Sponsor", allRecords: true, permissible_id: 0, canCreate: true, canRead: true, canUpdate: true, canDelete: true)

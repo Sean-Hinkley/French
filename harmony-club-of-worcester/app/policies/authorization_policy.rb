@@ -10,7 +10,7 @@ class AuthorizationPolicy < ApplicationPolicy
         end
         user.roles.each do |role|
             role.permissions.each do |permission|
-                @temp = nil
+                
                 if (permission.permissible_id || permission.allRecords) && permission.permissible_type.constantize == record.first().class && permission.canRead
                     return true
                 end
@@ -40,7 +40,7 @@ class AuthorizationPolicy < ApplicationPolicy
         end
         user.roles.each do |role|
             role.permissions.each do |permission|
-                if (permission.permissible_id == record.id || permission.allRecords) && permission.permissible_type.constantize == @record.class && permission.canRead
+                if (permission.permissible_id == record.id || permission.allRecords) && permission.permissible_type.constantize == @record.class && permission.canCreate
                     return true
                 end  
             end  

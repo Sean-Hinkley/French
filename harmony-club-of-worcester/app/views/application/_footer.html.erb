@@ -1,0 +1,31 @@
+<div class="bg-danger text-light">
+      <div class="container">
+          <div class="text-center border-bottom border-light p-1">
+            <%= link_to "Harmony Club of Worcester | 2022", root_path, class: "text-light text-decoration-none" %>
+          </div>
+          <div class="row justify-content-center pt-1">
+          <% @footer_sections.each do |footer_section| %>
+            <div class="col-lg-2 col-md-4 col-sm-6 mb-3 text-center">
+              <h6 class="d-inline"><%= footer_section.title %></h6>
+              <ul class="d-inline footer-list">
+              <% footer_section.pages.each do |page| %>
+                <li>
+                  <% if page.page_type == "Basic Page" %>
+                    <% if page.authenticate == true %>
+                      <li class="dropdownBoxes"><%= link_to page.title, auth_site_page_path(id: page.friendly_id), class: "footer-link" %></li>
+                    <% else %>
+                      <li class="dropdownBoxes"><%= link_to page.title, web_site_page_path(id: page.friendly_id), class: "footer-link" %></li>
+                    <% end %>
+                  <% elsif page.page_type == "Internal URL" %>
+                    <%= link_to page.title, page.destination, class: "footer-link" %>
+                  <% elsif page.page_type == "External URL" %>
+                    <%= link_to page.title, page.destination, class: "footer-link", target: :_blank %>
+                  <% end %>
+                </li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          </div>
+      </div>
+    </div>

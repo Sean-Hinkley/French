@@ -9,8 +9,11 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-require("bootstrap/dist/js/bootstrap")
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+require("stylesheets/application.scss")
 require("jquery")
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -32,29 +35,6 @@ window.$ = window.jQuery = jQuery;
 // change content field to be destination and vice versa
 // depending on what page type is selected
 document.addEventListener("turbolinks:load", () =>{
-// run once to check selected value in selectbox
-/*
-  $.ajax({
-    url: "/auth/site/change_form_fields",
-    type: "get",
-    data: { type:$("#page_page_type").val()},
-    success: function(data) {},
-    error: function(data) {}
-  });
-
-// checks if the type is changed, and sends call to action that changes form fields
-  $("#page_page_type").on("change", function() {
-    $.ajax({
-     url: "/auth/site/change_form_fields",
-     type: "get",
-     data: { type:$("#page_page_type").val()},
-     success: function(data) {},
-     error: function(data) {}
-   });
-
-  });
-  */
-
   $.fn.isOnScreen = function(partial){
 
     //let's be sure we're checking only one element (in case function is called on set)

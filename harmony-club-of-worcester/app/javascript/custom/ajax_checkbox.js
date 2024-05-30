@@ -30,25 +30,28 @@ document.addEventListener('turbolinks:load', () => {
         error: function(data) {}
       })
     });
-    var allRecords = document.getElementById("permission_allRecords").checked;
-    $("#permission_allRecords").change(function(){
-      allRecords = !allRecords
-      $.ajax({
-        url: "/auth/site/change_permissible_id",
-        type: "GET",
-        data: {checked: allRecords},
-        success: function(data) {},
-        error: function(data) {}
-      })
-      console.log("SECOND AJAX REQUEST!");
-      $.ajax({
-        url: "/auth/site/change_permissibles",
-        type: "GET",
-        data: { type: $("#permission_permissible_type").val() },
-        success: function(data) {},
-        error: function(data) {}
-      })
-    });
+    var allRecords = document.getElementById("permission_allRecords")
+    if(allRecords!= null) {
+      allRecords = allRecords.checked;
+      $("#permission_allRecords").change(function(){
+        allRecords = !allRecords
+        $.ajax({
+          url: "/auth/site/change_permissible_id",
+          type: "GET",
+          data: {checked: allRecords},
+          success: function(data) {},
+          error: function(data) {}
+        })
+        console.log("SECOND AJAX REQUEST!");
+        $.ajax({
+          url: "/auth/site/change_permissibles",
+          type: "GET",
+          data: { type: $("#permission_permissible_type").val() },
+          success: function(data) {},
+          error: function(data) {}
+        })
+      });
+    }
     $.ajax({
       url: "/auth/site/change_permissible_id",
       type: "GET",
