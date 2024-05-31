@@ -5,6 +5,7 @@ class Auth::AlbumsController < ApplicationController
   # GET /albums or /albums.json
   def index
     @albums = Album.all - Album.where(title: "«Temp Album»")
+	@auth_albums = Album.all - Album.where(title: "«Temp Album»")
     authorize Album.all, policy_class: AuthorizationPolicy
   end
 

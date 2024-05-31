@@ -137,7 +137,15 @@ footer{
 	margin: 0 auto;
 }
 
-#button {
-	width:5%;
+
+.button {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    margin-left: -104.5px; /*104.5px is half of the button's width*/
+}
+
+.albumImage {
+	width:100%;
 	margin: 0 auto;
 }
